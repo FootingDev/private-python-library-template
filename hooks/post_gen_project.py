@@ -212,7 +212,8 @@ def github_push_initial_repo(
             the repo.
         prompt (bool, default=True): Prompt to continue on failure
     """
-    remote = f"git@github.com:{ORG_NAME}/{repo_name}.git"
+    api_token = os.environ[GITHUB_API_TOKEN_ENV_VAR]
+    remote = f"https://{api_token}@github.com/{ORG_NAME}/{repo_name}.git"
     if isinstance(initial_commit, str):
         initial_commit = [initial_commit]
 
