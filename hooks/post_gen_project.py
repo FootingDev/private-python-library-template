@@ -217,6 +217,11 @@ def github_push_initial_repo(
         initial_commit = [initial_commit]
 
     _shell("git init")
+
+    git_name = os.environ.get("GITHUB_NAME", "Name")
+    git_email = os.environ.get("GITHUB_EMAIL", "email@email.com")
+    _shell(f"git config user.name '{git_name}'")
+    _shell(f"git config user.email '{git_email}'")
     _shell("git add .")
     _shell("git commit " + " ".join(f'-m "{msg}"' for msg in initial_commit))
     _shell("git branch -M main")
